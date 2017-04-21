@@ -38,7 +38,7 @@ public class EvaluatorTest {
                 new Card(2,Suit.CLUBS)
         );
         String result = evaluator.evaluate(cardList);
-        assertThat(result, is("FOURPAIR"));
+        assertThat(result, is("FOURCARD));
     }
 
     @Test
@@ -67,5 +67,19 @@ public class EvaluatorTest {
         );
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("FULLHOUSE"));
+    }
+
+    @Test
+    public void 같은_숫자가_3개이면_트리플이다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(7,Suit.CLUBS),
+                new Card(7,Suit.SPACE),
+                new Card(7,Suit.HEART),
+                new Card(1,Suit.CLUBS),
+                new Card(3,Suit.CLUBS)
+        );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("TRIPLE"));
     }
 }
