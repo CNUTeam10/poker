@@ -42,20 +42,6 @@ public class EvaluatorTest {
     }
 
     @Test
-    public void 같은_숫자가_2개인_세트가_2개이면_투페어다(){
-        Evaluator evaluator = new Evaluator();
-        List<Card> cardList = Arrays.asList(
-                new Card(7,Suit.CLUBS),
-                new Card(7,Suit.SPACE),
-                new Card(3,Suit.HEART),
-                new Card(3,Suit.CLUBS),
-                new Card(2,Suit.CLUBS)
-        );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("TWOPAIR"));
-    }
-
-    @Test
     public void 같은_숫자가_3개+2개이면_풀하우스다(){
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
@@ -81,5 +67,33 @@ public class EvaluatorTest {
         );
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("TRIPLE"));
+    }
+
+    @Test
+    public void 같은_숫자가_2개 + 2개이면_투페어다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(7,Suit.CLUBS),
+                new Card(7,Suit.SPACE),
+                new Card(3,Suit.HEART),
+                new Card(3,Suit.CLUBS),
+                new Card(2,Suit.CLUBS)
+        );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("TWOPAIR"));
+    }
+
+    @Test
+    public void 같은_숫자가_2개이면_원페어다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(3,Suit.CLUBS),
+                new Card(4,Suit.SPACE),
+                new Card(5,Suit.HEART),
+                new Card(6,Suit.CLUBS),
+                new Card(6,Suit.CLUBS)
+        );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("ONEPAIR"));
     }
 }
