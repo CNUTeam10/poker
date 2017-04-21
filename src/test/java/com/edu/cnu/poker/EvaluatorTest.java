@@ -54,4 +54,18 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("TWOPAIR"));
     }
+
+    @Test
+    public void 같은_숫자가_3개+2개이면_풀하우스다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(7,Suit.CLUBS),
+                new Card(7,Suit.SPACE),
+                new Card(7,Suit.HEART),
+                new Card(3,Suit.CLUBS),
+                new Card(3,Suit.CLUBS)
+        );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("FULLHOUSE"));
+    }
 }
