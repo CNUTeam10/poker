@@ -40,4 +40,18 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("FOURPAIR"));
     }
+
+    @Test
+    public void 같은_숫자가_2개인_세트가_2개이면_투페어다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(7,Suit.CLUBS),
+                new Card(7,Suit.SPACE),
+                new Card(3,Suit.HEART),
+                new Card(3,Suit.CLUBS),
+                new Card(2,Suit.CLUBS)
+        );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("TWOPAIR"));
+    }
 }
