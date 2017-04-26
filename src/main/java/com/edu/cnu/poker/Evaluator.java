@@ -75,7 +75,13 @@ public class Evaluator {
             if (cardList.get(i).getRank() != mountain[i])
                 return false;
         }
+        return true;
+    }
     public boolean is_backStraight(List<Card> cardList) {
-
+        for(int i=0; i<cardList.size()-1; i++){
+            if (cardList.get(i+1).getRank() - cardList.get(i).getRank() != 1)
+                return false;
+        }
+        return true;
     }
 }
