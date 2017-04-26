@@ -53,8 +53,11 @@ public class Evaluator {
     }
 
     public boolean check_continuity(List<Card> cardList) {
-        if (is_mountain() || is_backStraight() || cardList.get(4).getRank() - cardList.get(0).getRank() == 4)
+        if (is_mountain() || is_backStraight())
             return true;
+        for (int i = 0; i < 5; i++)
+            if (cardList.get(i + 1).getRank() - cardList.get(i).getRank() != 1)
+                return false;
 
         return true;
     }
