@@ -23,6 +23,15 @@ public class Evaluator {
             }
         }
 
+        for(Card card : cardList) {
+            if (rankMap.containsKey(card.getRank())) {
+                Integer count = rankMap.get(card.getRank());
+                count = new Integer(count.intValue() + 1);
+                rankMap.put(card.getRank(), count);
+            } else {
+                rankMap.put(card.getRank(), new Integer(1));
+            }
+        }
 //        for (Suit key : tempMap.keySet()) {
 //            if (tempMap.get(key) == 5) {
 //                return 1;
@@ -40,36 +49,14 @@ public class Evaluator {
             }
         } else if (check_suits_are_all_same()) return 6;
         else {
-            List<Card> sortCard;
-            sortCard = sort(cardList);
-            int i , j;
-            int sameNumber1 = 0, sameNumber2 = 0;
-            for(i = 0; i<4;i++) {
-                for (j = 1 + i; j < 5; j++) {
-                    if (sortCard.get(i).getRank == sortCard.get(j).getRank) {
-                        while (sortCard.get(i).getRank == sortCard.get(j).getRank) {
-                            sameNumber1++;
-                            if(sortCard.get(i).getRank!=sortCard.get(j).getRank)
-                                break;
-                        }
-                    }
-
-                }
+            for (Integer key : rankMap.keySet()) {
+                if (is_fourCard(rankMap)) return 4;
+                else if (is_fullHouse(rankMap)) return 5;
+                else if (is_triple(rankMap)) return  10;
+                else if (is_twoPair(rankMap)) return  11;
+                else if (is_onePair(rankMap)) return  12;
+                else return 13;
             }
-            for (j = 1 + i; j < 5; j++)
-                if (sortCard.get(i).getRank == sortCard.get(j).getRank)
-                    sameNumber2++;
-
-            if (sameNumber1 == 4||sameNumber2==4)
-                return 4;
-            else if ((sameNumber1 == 3 && sameNumber2 == 2) || (sameNumber1 == 2 && sameNumber2 == 3))
-                return 3;
-            else if (sameNumber1 == 2 && sameNumber2 == 2)
-                return 10;
-            else if (sameNumber1 == 2||sameNumber2 == 2)
-                return 12;
-            else
-                return 13;
         }
         return 0;
     }
@@ -78,12 +65,40 @@ public class Evaluator {
 
             return cardList;
         }
-    /*
-    public boolean check_continuity() {}
-    public boolean check_suits_are_all_same() {}
-    public boolean is_royalStraightFlush() {}
-    public boolean is_backStraightFlush() {}
-    public boolean is_mountain() {}
-    public boolean is_backStraight() {}
-    */
-}
+    public boolean is_fourCard(Map<Integer,Integer> rankMap) {
+        for (Integer key : rankMap.keySet())
+            if (rankMap.get(key) == 4) return true;
+
+        return false;
+    }
+    public boolean is_fullHouse(Map<Integer,Integer> rankMap) {
+        int numberOfSet=0;
+        for (Integer key : rankMap.keySet())
+            if (rankMap.get(key) == 3) numberOfSet++;
+
+        if (numberOfSet == 2) return true;
+
+        return false;
+    }
+    public boolean is_triple(Map<Integer,Integer> rankMap) {
+        for (Integer key : rankMap.keySet())
+            if (rankMap.get(key) == 3) return true;
+
+        return false;
+    }
+    public boolean is_twoPair(Map<Integer,Integer> rankMap) {
+        int numberOfSet=0;
+        for (Integer key : rankMap.keySet())
+            if (rankMap.get(key) == 2) numberOfSet++;
+
+        if (numberOfSet == 2) return true;
+
+        return false;
+    }
+    public boolean is_onePair(Map<Integer,Integer> rankMap) {
+        for (Integer key : rankMap.keySet())
+            if (rankMap.get(key) == 1) return true;
+
+        return false;
+    }
+    }
