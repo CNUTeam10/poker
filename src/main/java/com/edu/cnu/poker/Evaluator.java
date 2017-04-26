@@ -53,7 +53,13 @@ public class Evaluator {
         return false;
     }
     public boolean is_royalStraightFlush(List<Card> cardList) {
+        int royalStraightFlush[] = {1, 10, 11, 12, 13};
 
+        for(int i=0; i<cardList.size(); i++){
+            if (cardList.get(i).getRank() != royalStraightFlush[i])
+                return false;
+        }
+        return true;
     }
     public boolean is_backStraightFlush(List<Card> cardList) {
 
