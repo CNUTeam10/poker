@@ -28,6 +28,20 @@ public class EvaluatorTest {
     }
 
     @Test
+    public void 플러쉬에_A2345이면_백티플이다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(2,Suit.CLUBS),
+                new Card(3,Suit.CLUBS),
+                new Card(4,Suit.CLUBS),
+                new Card(5,Suit.CLUBS),
+                new Card(1,Suit.CLUBS)
+        );
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(2));
+    }
+
+    @Test
     public void SUIT가_5개가동일하면_플러쉬다() {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
