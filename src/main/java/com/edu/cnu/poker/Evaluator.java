@@ -25,8 +25,8 @@ public class Evaluator {
 
         if (check_continuity(cardList)) {
             if (check_suits_are_all_same(suitMap)) {
-                if (is_royalStraightFlush()) return 1;
-                else if (is_backStraightFlush()) return 2;
+                if (is_royalStraightFlush(cardList)) return 1;
+                else if (is_backStraightFlush(cardList)) return 2;
                 else return 3;
             }
             else {
@@ -35,14 +35,18 @@ public class Evaluator {
         }
 
         else if (check_suits_are_all_same(suitMap)) {
-            if (is_mountain()) return 7;
-            else if (is_backStraight()) return 8;
+            if (is_mountain(cardList)) return 7;
+            else if (is_backStraight(cardList)) return 8;
             else return 9;
         }
         return 0;
     }
 
     public boolean check_continuity(List<Card> cardList) {
+        if (is_mountain(cardList) || is_backStraight(cardList) || cardList.get(4).getRank() - cardList.get(0).getRank() == 4)
+            return true;
+
+        return true;
     }
     public boolean check_suits_are_all_same(Map<Suit, Integer> suitMap) {
         for (Suit key : suitMap.keySet()) {
