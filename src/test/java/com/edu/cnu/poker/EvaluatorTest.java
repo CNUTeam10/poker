@@ -24,7 +24,7 @@ public class EvaluatorTest {
                 new Card(1,Suit.CLUBS)
         );
         int result = evaluator.evaluate(cardList);
-        assertThat(result, is(4));
+        assertThat(result, is(1));
     }
 
     @Test
@@ -56,20 +56,6 @@ public class EvaluatorTest {
     }
 
     @Test
-    public void SUIT가_5개가동일하면_플러쉬다() {
-        Evaluator evaluator = new Evaluator();
-        List<Card> cardList = Arrays.asList(
-                new Card(1,Suit.CLUBS),
-                new Card(4,Suit.CLUBS),
-                new Card(8,Suit.CLUBS),
-                new Card(13,Suit.CLUBS),
-                new Card(2,Suit.CLUBS)
-        );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("FLUSH"));
-    }
-
-    @Test
     public void 같은_숫자가_4개이면_포카드다(){
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
@@ -79,8 +65,8 @@ public class EvaluatorTest {
                 new Card(10,Suit.DIAMONDS),
                 new Card(2,Suit.CLUBS)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("FOURCARD"));
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(4));
     }
 
     @Test
@@ -93,8 +79,36 @@ public class EvaluatorTest {
                 new Card(3,Suit.CLUBS),
                 new Card(3,Suit.CLUBS)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("FULLHOUSE"));
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(5));
+    }
+
+    @Test
+    public void SUIT가_5개가동일하면_플러쉬다() {
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(1,Suit.CLUBS),
+                new Card(4,Suit.CLUBS),
+                new Card(8,Suit.CLUBS),
+                new Card(13,Suit.CLUBS),
+                new Card(2,Suit.CLUBS)
+        );
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(6));
+    }
+
+    @Test
+    public void 스트레이트인데_10JQKA이면_마운틴이다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(10,Suit.SPADES),
+                new Card(11,Suit.CLUBS),
+                new Card(12,Suit.DIAMONDS),
+                new Card(13,Suit.HEARTS),
+                new Card(1,Suit.CLUBS)
+        );
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(7));
     }
 
     @Test
@@ -107,8 +121,8 @@ public class EvaluatorTest {
                 new Card(1,Suit.CLUBS),
                 new Card(3,Suit.CLUBS)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("TRIPLE"));
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(10));
     }
 
     @Test
@@ -121,8 +135,8 @@ public class EvaluatorTest {
                 new Card(3,Suit.CLUBS),
                 new Card(2,Suit.CLUBS)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("TWOPAIR"));
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(11));
     }
 
     @Test
@@ -135,8 +149,8 @@ public class EvaluatorTest {
                 new Card(6,Suit.CLUBS),
                 new Card(6,Suit.CLUBS)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("ONEPAIR"));
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(12));
     }
 
     @Test
