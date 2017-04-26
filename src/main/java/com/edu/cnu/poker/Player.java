@@ -9,4 +9,8 @@ public class Player {
     public Player(Deck player_deck){
         player_hand = new Hand(player_deck, PokerType.FIVE);
     }
+
+    public Hand getPlayer_hand(){
+        return player_hand;
+    }
 }
