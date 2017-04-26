@@ -126,6 +126,20 @@ public class EvaluatorTest {
     }
 
     @Test
+    public void 연속된_숫자가_5장이면_스트레이트이다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(2,Suit.DIAMONDS),
+                new Card(3,Suit.DIAMONDS),
+                new Card(4,Suit.SPADES),
+                new Card(5,Suit.CLUBS),
+                new Card(6,Suit.HEARTS)
+        );
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(9));
+    }
+
+    @Test
     public void 같은_숫자가_3개이면_트리플이다(){
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
