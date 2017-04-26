@@ -17,69 +17,75 @@ public class Evaluator {
                 Integer count = suitMap.get(card.getSuit());
                 count = new Integer(count.intValue() + 1);
                 suitMap.put(card.getSuit(), count);
-            } else
+            } else {
                 suitMap.put(card.getSuit(), new Integer(1));
+            }
         }
 
-        this.sort(cardList);
 
         if (check_continuity(cardList)) {
             if (check_suits_are_all_same(suitMap)) {
-                if (is_royalStraightFlush())
-                    return 1;
-                else if (is_backStraightFlush())
-                    return 2;
-                else
-                    return 3;
-            } else {
+                if (is_royalStraightFlush(cardList)) return 1;
+                else if (is_backStraightFlush(cardList)) return 2;
+                else return 3;
+            }
+            else {
 
             }
-        } else if (check_suits_are_all_same(suitMap)) {
-            if (is_mountain())
-                return 7;
-            else if (is_backStraight())
-                return 8;
-            else
-                return 9;
         }
 
+        else if (check_suits_are_all_same(suitMap)) {
+            if (is_mountain(cardList)) return 7;
+            else if (is_backStraight(cardList)) return 8;
+            else return 9;
+        }
         return 0;
     }
 
-    public List<Card> sort(List<Card> cardList) {
-        Collections.sort(cardList);
-
-        return cardList;
-    }
-
     public boolean check_continuity(List<Card> cardList) {
-        if (is_mountain() || is_backStraight() || cardList.get(4).getRank() - cardList.get(0).getRank() == 4)
+        if (is_mountain(cardList) || is_backStraight(cardList) || cardList.get(4).getRank() - cardList.get(0).getRank() == 4)
             return true;
 
         return true;
     }
-
     public boolean check_suits_are_all_same(Map<Suit, Integer> suitMap) {
-        for (Suit key : suitMap.keySet())
-            if (suitMap.get(key) == 5)
+        for (Suit key : suitMap.keySet()) {
+            if (suitMap.get(key) == 5) {
                 return true;
-
+            }
+        }
         return false;
     }
+    public boolean is_royalStraightFlush(List<Card> cardList) {
+        int royalStraightFlush[] = {1, 10, 11, 12, 13};
 
-    public boolean is_royalStraightFlush() {
-        return false;
+        for(int i=0; i<cardList.size(); i++){
+            if (cardList.get(i).getRank() != royalStraightFlush[i])
+                return false;
+        }
+        return true;
     }
-
-    public boolean is_backStraightFlush() {
-        return false;
+    public boolean is_backStraightFlush(List<Card> cardList) {
+        for(int i=0; i<cardList.size()-1; i++){
+            if (cardList.get(i+1).getRank() - cardList.get(i).getRank() != 1)
+                return false;
+        }
+        return true;
     }
+    public boolean is_mountain(List<Card> cardList) {
+        int mountain[] = {1, 10, 11, 12, 13};
 
-    public boolean is_mountain() {
-        return false;
+        for(int i=0; i<cardList.size(); i++){
+            if (cardList.get(i).getRank() != mountain[i])
+                return false;
+        }
+        return true;
     }
-
-    public boolean is_backStraight() {
-        return false;
+    public boolean is_backStraight(List<Card> cardList) {
+        for(int i=0; i<cardList.size()-1; i++){
+            if (cardList.get(i+1).getRank() - cardList.get(i).getRank() != 1)
+                return false;
+        }
+        return true;
     }
 }
