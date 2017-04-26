@@ -62,7 +62,11 @@ public class Evaluator {
         return true;
     }
     public boolean is_backStraightFlush(List<Card> cardList) {
-
+        for(int i=0; i<cardList.size()-1; i++){
+            if (cardList.get(i+1).getRank() - cardList.get(i).getRank() != 1)
+                return false;
+        }
+        return true;
     }
     public boolean is_mountain(List<Card> cardList) {
 
