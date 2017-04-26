@@ -14,6 +14,20 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class EvaluatorTest {
 
     @Test
+    public void 플러쉬에_10JQKA이면_로티플이다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(10,Suit.CLUBS),
+                new Card(11,Suit.CLUBS),
+                new Card(12,Suit.CLUBS),
+                new Card(13,Suit.CLUBS),
+                new Card(1,Suit.CLUBS)
+        );
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(4));
+    }
+
+    @Test
     public void SUIT가_5개가동일하면_플러쉬다() {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
