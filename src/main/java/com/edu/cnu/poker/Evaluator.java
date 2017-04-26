@@ -69,8 +69,12 @@ public class Evaluator {
         return true;
     }
     public boolean is_mountain(List<Card> cardList) {
+        int mountain[] = {1, 10, 11, 12, 13};
 
-    }
+        for(int i=0; i<cardList.size(); i++){
+            if (cardList.get(i).getRank() != mountain[i])
+                return false;
+        }
     public boolean is_backStraight(List<Card> cardList) {
 
     }
