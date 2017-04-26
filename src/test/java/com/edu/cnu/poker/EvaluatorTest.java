@@ -112,6 +112,20 @@ public class EvaluatorTest {
     }
 
     @Test
+    public void 스트레이트인데_A2345이면_백스트레이트이다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(2,Suit.DIAMONDS),
+                new Card(3,Suit.DIAMONDS),
+                new Card(4,Suit.SPADES),
+                new Card(5,Suit.CLUBS),
+                new Card(1,Suit.HEARTS)
+        );
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(8));
+    }
+
+    @Test
     public void 같은_숫자가_3개이면_트리플이다(){
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
