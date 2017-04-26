@@ -23,7 +23,7 @@ public class EvaluatorTest {
                 new Card(13,Suit.CLUBS),
                 new Card(2,Suit.CLUBS)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("FLUSH"));
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(1));
     }
 }
