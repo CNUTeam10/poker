@@ -96,4 +96,18 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("ONEPAIR"));
     }
+
+    @Test
+    public void 같은_숫자가_없다면_노페어다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(3,Suit.CLUBS),
+                new Card(4,Suit.SPADES),
+                new Card(5,Suit.HEARTS),
+                new Card(6,Suit.CLUBS),
+                new Card(6,Suit.CLUBS)
+        );
+        int result = evaluator.evaluate(cardList);
+        assertThat(result, is(13));
+    }
 }
