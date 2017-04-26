@@ -32,9 +32,9 @@ public class EvaluatorTest {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
                 new Card(10,Suit.CLUBS),
-                new Card(10,Suit.SPACE),
-                new Card(10,Suit.HEART),
-                new Card(10,Suit.DIAMOND),
+                new Card(10,Suit.SPADES),
+                new Card(10,Suit.HEARTS),
+                new Card(10,Suit.DIAMONDS),
                 new Card(2,Suit.CLUBS)
         );
         int result = evaluator.evaluate(cardList);
@@ -46,8 +46,8 @@ public class EvaluatorTest {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
                 new Card(7,Suit.CLUBS),
-                new Card(7,Suit.SPACE),
-                new Card(7,Suit.HEART),
+                new Card(7,Suit.SPADES),
+                new Card(7,Suit.HEARTS),
                 new Card(3,Suit.CLUBS),
                 new Card(3,Suit.CLUBS)
         );
@@ -60,13 +60,13 @@ public class EvaluatorTest {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
                 new Card(7,Suit.CLUBS),
-                new Card(7,Suit.SPACE),
-                new Card(7,Suit.HEART),
+                new Card(7,Suit.SPADES),
+                new Card(7,Suit.HEARTS),
                 new Card(1,Suit.CLUBS),
                 new Card(3,Suit.CLUBS)
         );
         int result = evaluator.evaluate(cardList);
-        assertThat(result, is(0));
+        assertThat(result, is(1));
     }
 
     @Test
@@ -74,13 +74,13 @@ public class EvaluatorTest {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
                 new Card(7,Suit.CLUBS),
-                new Card(7,Suit.SPACE),
-                new Card(3,Suit.HEART),
+                new Card(7,Suit.SPADES),
+                new Card(3,Suit.HEARTS),
                 new Card(3,Suit.CLUBS),
                 new Card(2,Suit.CLUBS)
         );
         int result = evaluator.evaluate(cardList);
-        assertThat(result, is(0);
+        assertThat(result, is(1));
     }
 
     @Test
@@ -88,12 +88,12 @@ public class EvaluatorTest {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
                 new Card(3,Suit.CLUBS),
-                new Card(4,Suit.SPACE),
-                new Card(5,Suit.HEART),
+                new Card(4,Suit.SPADES),
+                new Card(5,Suit.HEARTS),
                 new Card(6,Suit.CLUBS),
                 new Card(6,Suit.CLUBS)
         );
         int result = evaluator.evaluate(cardList);
-        assertThat(result, is(0));
+        assertThat(result, is(1));
     }
 }

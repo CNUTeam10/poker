@@ -19,10 +19,11 @@ public class Evaluator {
                 Integer count = suitMap.get(card.getSuit());
                 count = new Integer(count.intValue() + 1);
                 suitMap.put(card.getSuit(), count);
-            } else
+            } else {
                 suitMap.put(card.getSuit(), new Integer(1));
+            }
         }
-
+      
         for(Card card : cardList) {
             if (rankMap.containsKey(card.getRank())) {
                 Integer count = rankMap.get(card.getRank());
@@ -105,12 +106,6 @@ public class Evaluator {
         return false;
     }
 
-    public List<Card> sort(List<Card> cardList) {
-        Collections.sort(cardList);
-
-        return cardList;
-    }
-
     public boolean check_continuity(List<Card> cardList) {
         if (is_mountain() || is_backStraight())
             return true;
@@ -120,28 +115,44 @@ public class Evaluator {
 
         return true;
     }
-
     public boolean check_suits_are_all_same(Map<Suit, Integer> suitMap) {
-        for (Suit key : suitMap.keySet())
-            if (suitMap.get(key) == 5)
+        for (Suit key : suitMap.keySet()) {
+            if (suitMap.get(key) == 5) {
                 return true;
-
+            }
+        }
         return false;
     }
+    public boolean is_royalStraightFlush(List<Card> cardList) {
+        int royalStraightFlush[] = {1, 10, 11, 12, 13};
 
-    public boolean is_royalStraightFlush() {
-        return false;
+        for(int i=0; i<cardList.size(); i++){
+            if (cardList.get(i).getRank() != royalStraightFlush[i])
+                return false;
+        }
+        return true;
     }
-
-    public boolean is_backStraightFlush() {
-        return false;
+    public boolean is_backStraightFlush(List<Card> cardList) {
+        for(int i=0; i<cardList.size()-1; i++){
+            if (cardList.get(i+1).getRank() - cardList.get(i).getRank() != 1)
+                return false;
+        }
+        return true;
     }
+    public boolean is_mountain(List<Card> cardList) {
+        int mountain[] = {1, 10, 11, 12, 13};
 
-    public boolean is_mountain() {
-        return false;
+        for(int i=0; i<cardList.size(); i++){
+            if (cardList.get(i).getRank() != mountain[i])
+                return false;
+        }
+        return true;
     }
-
-    public boolean is_backStraight() {
-        return false;
+    public boolean is_backStraight(List<Card> cardList) {
+        for(int i=0; i<cardList.size()-1; i++){
+            if (cardList.get(i+1).getRank() - cardList.get(i).getRank() != 1)
+                return false;
+        }
+        return true;
     }
 }
