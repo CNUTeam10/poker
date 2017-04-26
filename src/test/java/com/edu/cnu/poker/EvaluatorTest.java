@@ -23,7 +23,7 @@ public class EvaluatorTest {
                 new Card(13,Suit.CLUBS),
                 new Card(2,Suit.CLUBS)
         );
-       int result = evaluator.evaluate(cardList);
+        int result = evaluator.evaluate(cardList);
         assertThat(result, is(1));
     }
 
