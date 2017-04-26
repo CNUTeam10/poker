@@ -14,4 +14,16 @@ public class Game {
         player1 = new Player(deck);
         player2 = new Player(deck);
     }
+
+    private Player compare() {
+        int player1_rank = evaluator.evaluate(player1.getPlayer_hand().cardList);
+        int player2_rank = evaluator.evaluate(player2.getPlayer_hand().cardList);
+
+        if (player1_rank == player2_rank)
+            return player1;
+        else if (player1_rank < player2_rank)
+            return player1;
+        else
+            return player2;
+    }
 }
