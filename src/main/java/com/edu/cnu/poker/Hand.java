@@ -30,4 +30,6 @@ public class Hand {
     }
 
     public void setCardList( List<Card> passedCardList ) { cardList = passedCardList; }
+
+    public void addCardList(Card card) { cardList.add(card); }
 }
