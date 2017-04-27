@@ -189,7 +189,7 @@ public class EvaluatorTest {
                 new Card(4,Suit.SPADES),
                 new Card(5,Suit.HEARTS),
                 new Card(6,Suit.CLUBS),
-                new Card(6,Suit.CLUBS)
+                new Card(8,Suit.CLUBS)
         );
         int result = evaluator.evaluate(cardList);
         assertThat(result, is(13));
@@ -211,9 +211,9 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(11, Suit.HEARTS));
         player2.getPlayer_hand().addCardList(new Card(12, Suit.HEARTS));
         player2.getPlayer_hand().addCardList(new Card(13, Suit.HEARTS));
-        player2.getPlayer_hand()().addCardList(new Card(1, Suit.HEARTS));
+        player2.getPlayer_hand().addCardList(new Card(1, Suit.HEARTS));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 1);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 1);
         assertThat(result, is(player2));
     }
 
@@ -234,7 +234,7 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(4, Suit.HEARTS));
         player2.getPlayer_hand().addCardList(new Card(5, Suit.HEARTS));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 2);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 2);
         assertThat(result, is(player2));
     }
 
@@ -255,7 +255,7 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(7, Suit.HEARTS));
         player2.getPlayer_hand().addCardList(new Card(8, Suit.HEARTS));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 3);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 3);
         assertThat(result, is(player2));
     }
 
@@ -276,7 +276,7 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(1, Suit.CLUBS));
         player2.getPlayer_hand().addCardList(new Card(4, Suit.HEARTS));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 4);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 4);
         assertThat(result, is(player2));
     }
 
@@ -297,7 +297,7 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(7, Suit.SPADES));
         player2.getPlayer_hand().addCardList(new Card(7, Suit.CLUBS));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 5);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 5);
         assertThat(result, is(player2));
     }
 
@@ -318,7 +318,7 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(4, Suit.SPADES));
         player2.getPlayer_hand().addCardList(new Card(2, Suit.SPADES));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 6);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 6);
         assertThat(result, is(player2));
     }
 
@@ -339,7 +339,7 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(13, Suit.CLUBS));
         player2.getPlayer_hand().addCardList(new Card(1, Suit.HEARTS));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 7);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 7);
         assertThat(result, is(player2));
     }
 
@@ -360,7 +360,7 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(5, Suit.CLUBS));
         player2.getPlayer_hand().addCardList(new Card(1, Suit.HEARTS));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 11);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 11);
         assertThat(result, is(player2));
     }
 
@@ -381,7 +381,7 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(8, Suit.DIAMONDS));
         player2.getPlayer_hand().addCardList(new Card(1, Suit.HEARTS));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 12);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 12);
         assertThat(result, is(player2));
     }
 
@@ -417,7 +417,7 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(4, Suit.CLUBS));
         player2.getPlayer_hand().addCardList(new Card(5, Suit.HEARTS));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 8);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 8);
         assertThat(result, is(player2));
     }
     @Test
@@ -437,7 +437,7 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(8, Suit.CLUBS));
         player2.getPlayer_hand().addCardList(new Card(9, Suit.HEARTS));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 9);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 9);
         assertThat(result, is(player2));
     }
     @Test
@@ -457,7 +457,7 @@ public class EvaluatorTest {
         player2.getPlayer_hand().addCardList(new Card(8, Suit.CLUBS));
         player2.getPlayer_hand().addCardList(new Card(9, Suit.HEARTS));
 
-        Player result = evaluator.same_rank_evaluate(player1, player2, 8);
+        Player result = evaluator.sameRankEvaluate(player1, player2, 8);
         assertThat(result, is(player2));
     }
 

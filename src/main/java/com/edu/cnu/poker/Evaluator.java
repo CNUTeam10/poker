@@ -75,7 +75,7 @@ public class Evaluator {
     public boolean check_continuity(List<Card> cardList) {
         if (is_royalStraightFlush_or_mountain(cardList) || is_backStraightFlush_or_backStraight(cardList))
             return true;
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
             if (cardList.get(i + 1).getRank() - cardList.get(i).getRank() != 1)
                 return false;
 
@@ -102,11 +102,14 @@ public class Evaluator {
     }
 
     public boolean is_backStraightFlush_or_backStraight(List<Card> cardList) {
-        for (int i = 0; i < cardList.size() - 1; i++) {
-            if (cardList.get(i + 1).getRank() - cardList.get(i).getRank() != 1)
-                return false;
+        if (cardList.get(0).getRank() == 1) {
+            for (int i = 0; i < cardList.size() - 1; i++) {
+                if (cardList.get(i + 1).getRank() - cardList.get(i).getRank() != 1)
+                    return false;
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public boolean is_fourCard(Map<Integer, Integer> rankMap) {
@@ -117,11 +120,16 @@ public class Evaluator {
     }
 
     public boolean is_fullHouse(Map<Integer, Integer> rankMap) {
-        int numberOfSet = 0;
-        for (Integer key : rankMap.keySet())
-            if (rankMap.get(key) == 3) numberOfSet++;
-
-        if (numberOfSet == 2) return true;
+        int triple = 0;
+        int pair = 0;
+        for (Integer key : rankMap.keySet()) {
+            if (rankMap.get(key) == 3)
+                triple = 1;
+            if (rankMap.get(key) == 2)
+                pair = 1;
+        }
+        if (triple == 1 && pair == 1)
+            return true;
 
         return false;
     }
@@ -145,7 +153,7 @@ public class Evaluator {
 
     public boolean is_onePair(Map<Integer, Integer> rankMap) {
         for (Integer key : rankMap.keySet())
-            if (rankMap.get(key) == 1) return true;
+            if (rankMap.get(key) == 2) return true;
 
         return false;
     }
@@ -194,15 +202,20 @@ public class Evaluator {
         Card player1ThirdCard = player1.getPlayer_hand().getCardList().get(3);
         Card player2ThirdCard = player2.getPlayer_hand().getCardList().get(3);
 
+        if (player1ThirdCard.getRank() == 1)
+            return player1;
+        if (player2ThirdCard.getRank() == 1)
+            return player2;
         if (player1ThirdCard.getRank() > player2ThirdCard.getRank())
             return player1;
         else if (player1ThirdCard.getRank() < player2ThirdCard.getRank())
             return player2;
-        else
-        if (suitRank(player1ThirdCard.getSuit()) < suitRank(player2ThirdCard.getSuit()))
-            return player1;
-        else
-            return player2;
+        else {
+            if (suitRank(player1ThirdCard.getSuit()) < suitRank(player2ThirdCard.getSuit()))
+                return player1;
+            else
+                return player2;
+        }
     }
 
     private Player compareTwopair(Player player1, Player player2) {
