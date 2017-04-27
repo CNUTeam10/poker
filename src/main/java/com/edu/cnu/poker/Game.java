@@ -7,12 +7,11 @@ public class Game {
     final private int singleDeck = 52;
     private Deck deck = new Deck(singleDeck);
     private Evaluator evaluator = new Evaluator();
-    private Player player1;
-    private Player player2;
+    private Player player1 = new Player(deck);
+    private Player player2 = new Player(deck);
 
-    public void Game() {
-        player1 = new Player(deck);
-        player2 = new Player(deck);
+    public void startGame() {
+
     }
 
     public Player compare() {
@@ -25,5 +24,12 @@ public class Game {
             return player1;
         else
             return player2;
+    }
+
+    public void firstDeal(Player player1, Player player2) {
+        for (int i=0; i<2; i++){
+            player1.getPlayer_hand().addCardList(deck.drawCard());
+            player2.getPlayer_hand().addCardList(deck.drawCard());
+        }
     }
 }

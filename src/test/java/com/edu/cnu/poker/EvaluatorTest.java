@@ -400,5 +400,65 @@ public class EvaluatorTest {
             System.out.println(cardList.get(i));
     }
 
+    @Test
+    public void 두플레이어가_모두_백스트레이트일때_A의_무늬로_승패를_가린다() {
+        Evaluator evaluator = new Evaluator();
+        Player player1 = new Player(new Deck(52));
+        player1.getPlayer_hand().addCardList(new Card(1, Suit.HEARTS));
+        player1.getPlayer_hand().addCardList(new Card(2, Suit.CLUBS));
+        player1.getPlayer_hand().addCardList(new Card(3, Suit.DIAMONDS));
+        player1.getPlayer_hand().addCardList(new Card(4, Suit.SPADES));
+        player1.getPlayer_hand().addCardList(new Card(5, Suit.DIAMONDS));
+
+        Player player2 = new Player(new Deck(52));
+        player2.getPlayer_hand().addCardList(new Card(1, Suit.SPADES));
+        player2.getPlayer_hand().addCardList(new Card(2, Suit.HEARTS));
+        player2.getPlayer_hand().addCardList(new Card(3, Suit.HEARTS));
+        player2.getPlayer_hand().addCardList(new Card(4, Suit.CLUBS));
+        player2.getPlayer_hand().addCardList(new Card(5, Suit.HEARTS));
+
+        Player result = evaluator.same_rank_evaluate(player1, player2, 8);
+        assertThat(result, is(player2));
+    }
+    @Test
+    public void 두플레이어가_모두_스트레이트일때_숫자의_대소로_승패를_가린다() {
+        Evaluator evaluator = new Evaluator();
+        Player player1 = new Player(new Deck(52));
+        player1.getPlayer_hand().addCardList(new Card(2, Suit.HEARTS));
+        player1.getPlayer_hand().addCardList(new Card(3, Suit.CLUBS));
+        player1.getPlayer_hand().addCardList(new Card(4, Suit.DIAMONDS));
+        player1.getPlayer_hand().addCardList(new Card(5, Suit.CLUBS));
+        player1.getPlayer_hand().addCardList(new Card(6, Suit.DIAMONDS));
+
+        Player player2 = new Player(new Deck(52));
+        player2.getPlayer_hand().addCardList(new Card(5, Suit.SPADES));
+        player2.getPlayer_hand().addCardList(new Card(6, Suit.HEARTS));
+        player2.getPlayer_hand().addCardList(new Card(7, Suit.HEARTS));
+        player2.getPlayer_hand().addCardList(new Card(8, Suit.CLUBS));
+        player2.getPlayer_hand().addCardList(new Card(9, Suit.HEARTS));
+
+        Player result = evaluator.same_rank_evaluate(player1, player2, 9);
+        assertThat(result, is(player2));
+    }
+    @Test
+    public void 두플레이어가_모두_트리플일때_숫자의_대소로_승패를_가린다() {
+        Evaluator evaluator = new Evaluator();
+        Player player1 = new Player(new Deck(52));
+        player1.getPlayer_hand().addCardList(new Card(2, Suit.HEARTS));
+        player1.getPlayer_hand().addCardList(new Card(2, Suit.CLUBS));
+        player1.getPlayer_hand().addCardList(new Card(2, Suit.DIAMONDS));
+        player1.getPlayer_hand().addCardList(new Card(5, Suit.CLUBS));
+        player1.getPlayer_hand().addCardList(new Card(6, Suit.DIAMONDS));
+
+        Player player2 = new Player(new Deck(52));
+        player2.getPlayer_hand().addCardList(new Card(11, Suit.SPADES));
+        player2.getPlayer_hand().addCardList(new Card(11, Suit.HEARTS));
+        player2.getPlayer_hand().addCardList(new Card(11, Suit.CLUBS));
+        player2.getPlayer_hand().addCardList(new Card(8, Suit.CLUBS));
+        player2.getPlayer_hand().addCardList(new Card(9, Suit.HEARTS));
+
+        Player result = evaluator.same_rank_evaluate(player1, player2, 8);
+        assertThat(result, is(player2));
+    }
 
 }
