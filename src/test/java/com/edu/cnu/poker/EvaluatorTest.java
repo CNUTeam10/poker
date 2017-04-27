@@ -250,6 +250,33 @@ public class EvaluatorTest {
     }
 
     @Test
+    public void who_win_with_same_rank3(){
+        Evaluator evaluator = new Evaluator();
+        Player player1 = new Player(new Deck(52));
+        List<Card> cardList_player1 = Arrays.asList(
+                new Card(4, Suit.CLUBS),
+                new Card(5, Suit.CLUBS),
+                new Card(6, Suit.CLUBS),
+                new Card(7, Suit.CLUBS),
+                new Card(8, Suit.CLUBS)
+        );
+        player1.player_hand.setCardList(cardList_player1);
+
+        Player player2 = new Player(new Deck(52));
+        List<Card> cardList_player2 = Arrays.asList(
+                new Card(4, Suit.HEARTS),
+                new Card(5, Suit.HEARTS),
+                new Card(6, Suit.HEARTS),
+                new Card(7, Suit.HEARTS),
+                new Card(8, Suit.HEARTS)
+        );
+        player2.player_hand.setCardList(cardList_player2);
+
+        int result = evaluator.same_rank_evaluate(player1, player2, 3);
+        assertThat(result, is(player2));
+    }
+
+    @Test
     public void sortTest() {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
