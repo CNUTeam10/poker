@@ -151,19 +151,36 @@ public class Evaluator {
     }
 
     public Player sameRankEvaluate(Player player1, Player player2, int rank) {
-        if (rank == 1 || rank == 2 || rank == 7 || rank == 8) {
-            return compareSuit(player1, player2);
-        } else {
-
+        if (rank == 1 || rank == 2 || rank == 7 || rank == 8)
+            return compareFlushSuit(player1, player2);
+        else {
+            if (rank == 3 || rank == 6 || rank == 13)
+                return compareEntireRank(player1, player2);
         }
         return player1;
     }
 
-    private Player compareSuit(Player player1, Player player2) {
+    private Player compareFlushSuit(Player player1, Player player2) {
         if (suitRank(player1.getPlayer_hand().getCardList().get(0).getSuit()) < suitRank(player2.getPlayer_hand().getCardList().get(0).getSuit()))
             return player1;
         else
             return player2;
+    }
+
+    private Player compareEntireRank(Player player1, Player player2) {
+        int player1Acheck = player1.getPlayer_hand().getCardList().get(0).getRank();
+        int player2Acheck = player2.getPlayer_hand().getCardList().get(0).getRank();
+
+        if ((player1Acheck == 1 && player2Acheck == 1) || (player1.getPlayer_hand().getCardList().get(4).getRank() == player1.getPlayer_hand().getCardList().get(4).getRank()))
+            return compareFlushSuit(player1, player2);
+        if (player1Acheck == 1 && player2Acheck == 0)
+            return player1;
+        if (player1Acheck == 0 && player2Acheck == 1)
+            return player2;
+        if (player1.getPlayer_hand().getCardList().get(4).getRank() < player2.getPlayer_hand().getCardList().get(4).getRank())
+            return player2;
+        else
+            return player1;
     }
 
     private int suitRank(Suit suit) {
