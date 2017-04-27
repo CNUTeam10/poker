@@ -364,7 +364,26 @@ public class EvaluatorTest {
         assertThat(result, is(player2));
     }
 
-    
+    @Test
+    public void who_win_with_same_rank12(){
+        Evaluator evaluator = new Evaluator();
+        Player player1 = new Player(new Deck(52));
+        player1.getPlayer_hand().addCardList(new Card(7, Suit.CLUBS));
+        player1.getPlayer_hand().addCardList(new Card(7, Suit.CLUBS));
+        player1.getPlayer_hand().addCardList(new Card(2, Suit.HEARTS));
+        player1.getPlayer_hand().addCardList(new Card(5, Suit.HEARTS));
+        player1.getPlayer_hand().addCardList(new Card(10, Suit.DIAMONDS));
+
+        Player player2 = new Player(new Deck(52));
+        player2.getPlayer_hand().addCardList(new Card(7, Suit.SPADES));
+        player2.getPlayer_hand().addCardList(new Card(7, Suit.SPADES));
+        player2.getPlayer_hand().addCardList(new Card(3, Suit.CLUBS));
+        player2.getPlayer_hand().addCardList(new Card(8, Suit.DIAMONDS));
+        player2.getPlayer_hand().addCardList(new Card(1, Suit.HEARTS));
+
+        Player result = evaluator.same_rank_evaluate(player1, player2, 12);
+        assertThat(result, is(player2));
+    }
 
     @Test
     public void sortTest() {
