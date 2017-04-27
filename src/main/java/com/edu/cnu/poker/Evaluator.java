@@ -1,4 +1,4 @@
-﻿package com.edu.cnu.poker;
+package com.edu.cnu.poker;
 
 import java.util.Collections;
 import java.util.HashMap;
