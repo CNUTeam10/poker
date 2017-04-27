@@ -154,10 +154,15 @@ public class Evaluator {
         if (rank == 1 || rank == 2 || rank == 7 || rank == 8)
             return compareFlushSuit(player1, player2);
         else {
-            if (rank == 3 || rank == 6 || rank == 13)
+            if (rank == 3 || rank == 6 || rank == 9 || rank == 13)
                 return compareEntireRank(player1, player2);
+            else if (rank == 4 || rank == 5 || rank == 10)
+                return compareCenterCard(player1, player2);
+            else if (rank == 11)
+                return compareTwopair(player1, player2);
+            else
+                return compareOnepair(player1, player2);
         }
-        return player1;
     }
 
     private Player compareFlushSuit(Player player1, Player player2) {
@@ -170,17 +175,76 @@ public class Evaluator {
     private Player compareEntireRank(Player player1, Player player2) {
         int player1Acheck = player1.getPlayer_hand().getCardList().get(0).getRank();
         int player2Acheck = player2.getPlayer_hand().getCardList().get(0).getRank();
+        Card player1FourthCard = player1.getPlayer_hand().getCardList().get(4);
+        Card player2FourthCard = player2.getPlayer_hand().getCardList().get(4);
 
-        if ((player1Acheck == 1 && player2Acheck == 1) || (player1.getPlayer_hand().getCardList().get(4).getRank() == player1.getPlayer_hand().getCardList().get(4).getRank()))
+        if ((player1Acheck == 1 && player2Acheck == 1) || (player1FourthCard.getRank() == player2FourthCard.getRank()))
             return compareFlushSuit(player1, player2);
         if (player1Acheck == 1 && player2Acheck == 0)
             return player1;
         if (player1Acheck == 0 && player2Acheck == 1)
             return player2;
-        if (player1.getPlayer_hand().getCardList().get(4).getRank() < player2.getPlayer_hand().getCardList().get(4).getRank())
+        if (player1FourthCard.getRank() < player2FourthCard.getRank())
             return player2;
         else
             return player1;
+    }
+
+    private Player compareCenterCard(Player player1, Player player2) {
+        Card player1ThirdCard = player1.getPlayer_hand().getCardList().get(3);
+        Card player2ThirdCard = player2.getPlayer_hand().getCardList().get(3);
+
+        if (player1ThirdCard.getRank() > player2ThirdCard.getRank())
+            return player1;
+        else if (player1ThirdCard.getRank() < player2ThirdCard.getRank())
+            return player2;
+        else
+        if (suitRank(player1ThirdCard.getSuit()) < suitRank(player2ThirdCard.getSuit()))
+            return player1;
+        else
+            return player2;
+    }
+
+    private Player compareTwopair(Player player1, Player player2) {
+        Card player1SecondCard = player1.getPlayer_hand().getCardList().get(2);
+        Card player2SecondCard = player2.getPlayer_hand().getCardList().get(2);
+        Card player1FourthCard = player1.getPlayer_hand().getCardList().get(4);
+        Card player2FourthCard = player2.getPlayer_hand().getCardList().get(4);
+        Card player1BigCard;
+        Card player2BigCard;
+
+        if (player1SecondCard.getRank() > player1FourthCard.getRank())
+            player1BigCard = player1SecondCard;
+        else
+            player1BigCard = player1FourthCard;
+        if (player2SecondCard.getRank() > player2FourthCard.getRank())
+            player2BigCard = player2SecondCard;
+        else
+            player2BigCard = player2FourthCard;
+
+        if (player1BigCard.getRank() >= player2BigCard.getRank())
+            return player1;
+        else
+            return player2;
+    }
+
+    private Player compareOnepair(Player player1, Player player2) {
+        int checkPair1[] = new int[13];
+        int checkPair2[] = new int[13];
+        int player1PairIndex = 0;
+        int player2PairIndex = 0;
+
+        for (int i = 0; i < 5; i++) {
+            if (checkPair1[player1.getPlayer_hand().getCardList().get(i).getRank()]++ == 1)
+                player1PairIndex = i;
+            if (checkPair2[player2.getPlayer_hand().getCardList().get(i).getRank()]++ == 1)
+                player2PairIndex = i;
+        }
+
+        if (player1.getPlayer_hand().getCardList().get(player1PairIndex).getRank() >= player2.getPlayer_hand().getCardList().get(player2PairIndex).getRank())
+            return player1;
+        else
+            return player2;
     }
 
     private int suitRank(Suit suit) {
