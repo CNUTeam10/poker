@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 
 public class Game {
-    final private int singleDeck = 52;
+    final private int singleDeck = 1;
     private Deck deck = new Deck(singleDeck);
     private Evaluator evaluator;
     private Player player1 = new Player(deck, "user");
@@ -22,8 +22,8 @@ public class Game {
 //    }
 
     public void showAllMoney() {
-        System.out.println(player1.getMoney());
-        System.out.println(player2.getMoney());
+        System.out.println("user money : " +player1.getMoney());
+        System.out.println("computer money : " +player2.getMoney());
 
         betting();
         firstDeal(player1, player2);
@@ -104,6 +104,8 @@ public class Game {
     public void finalDeal(Player player1, Player player2) {
         player1.getPlayer_hand().addCardList(deck.drawCard());
         player2.getPlayer_hand().addCardList(deck.drawCard());
+
+        System.out.println("Player's Card is " + player1.getPlayer_hand().getCardList().get(player1.getPlayer_hand().getCardList().size() - 1).getSuit().name()+ " " +player1.getPlayer_hand().getCardList().get(player1.getPlayer_hand().getCardList().size() - 1).getRank());
 
         betting();
         winner().winner();
