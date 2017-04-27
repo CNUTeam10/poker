@@ -16,12 +16,19 @@ public class Hand {
         this.deck = deck;
         this.pokerType = pokerType;
         cardList = new ArrayList<Card>();
-        for (int i = 0; i < pokerType.getNumberOfCard(); i++) {
-            cardList.add(deck.drawCard());
-        }
+//        for (int i = 0; i < pokerType.getNumberOfCard(); i++) {
+//            cardList.add(deck.drawCard());
+//        }
     }
 
     public int getTotalCard() {
         return cardList.size();
     }
+
+    public List<Card> getCardList() {
+        return cardList;
+    }
+    //public void setCardList( List<Card> passedCardList ) { cardList = passedCardList; }
+
+    public void addCardList(Card card) { cardList.add(card); }
 }
