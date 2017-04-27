@@ -194,4 +194,19 @@ public class EvaluatorTest {
         int result = evaluator.evaluate(cardList);
         assertThat(result, is(13));
     }
+
+    @Test
+    public void sortTest() {
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(7,Suit.CLUBS),
+                new Card(7,Suit.SPADES),
+                new Card(3,Suit.HEARTS),
+                new Card(3,Suit.CLUBS),
+                new Card(2,Suit.CLUBS)
+        );
+        evaluator.sort(cardList);
+        for (int i = 0; i < 5; i++)
+            System.out.println(cardList.get(i));
+    }
 }
