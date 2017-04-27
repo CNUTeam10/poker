@@ -196,6 +196,11 @@ public class EvaluatorTest {
     }
 
     @Test
+    public void who_win_with_same_rank1(){
+        
+    }
+
+    @Test
     public void sortTest() {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
@@ -209,4 +214,6 @@ public class EvaluatorTest {
         for (int i = 0; i < 5; i++)
             System.out.println(cardList.get(i));
     }
+
+
 }
