@@ -197,7 +197,7 @@ public class EvaluatorTest {
 
     @Test
     public void who_win_with_same_rank1(){
-        
+
     }
 
     @Test

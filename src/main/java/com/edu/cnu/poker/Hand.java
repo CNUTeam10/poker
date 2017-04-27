@@ -28,4 +28,6 @@ public class Hand {
     public List<Card> getCardList() {
         return cardList;
     }
+    
+    public void setCardList( List<Card> passedCardList ) { cardList = passedCardList; }
 }
