@@ -15,9 +15,9 @@ public class Game {
         player2 = new Player(deck);
     }
 
-    private Player compare() {
-        int player1_rank = evaluator.evaluate(player1.getPlayer_hand().cardList);
-        int player2_rank = evaluator.evaluate(player2.getPlayer_hand().cardList);
+    public Player compare() {
+        int player1_rank = evaluator.evaluate(player1.getPlayer_hand().getCardList());
+        int player2_rank = evaluator.evaluate(player2.getPlayer_hand().getCardList());
 
         if (player1_rank == player2_rank)
             return player1;
