@@ -12,6 +12,7 @@ public class Player {
     private int amountOfBet=0;
     private int money = 100;
 
+
     public Player(Deck player_deck){
         player_hand = new Hand(player_deck, PokerType.FIVE);
     }
