@@ -347,43 +347,24 @@ public class EvaluatorTest {
     public void who_win_with_same_rank11(){
         Evaluator evaluator = new Evaluator();
         Player player1 = new Player(new Deck(52));
-        player1.getPlayer_hand().addCardList(new Card(7, Suit.CLUBS));
-        player1.getPlayer_hand().addCardList(new Card(7, Suit.CLUBS));
-        player1.getPlayer_hand().addCardList(new Card(3, Suit.HEARTS));
-        player1.getPlayer_hand().addCardList(new Card(3, Suit.HEARTS));
+        player1.getPlayer_hand().addCardList(new Card(7, Suit.HEARTS));
+        player1.getPlayer_hand().addCardList(new Card(7, Suit.DIAMONDS));
+        player1.getPlayer_hand().addCardList(new Card(3, Suit.CLUBS));
+        player1.getPlayer_hand().addCardList(new Card(3, Suit.SPADES));
         player1.getPlayer_hand().addCardList(new Card(1, Suit.DIAMONDS));
 
         Player player2 = new Player(new Deck(52));
-        player2.getPlayer_hand().addCardList(new Card(7, Suit.SPADES));
-        player2.getPlayer_hand().addCardList(new Card(7, Suit.SPADES));
-        player2.getPlayer_hand().addCardList(new Card(3, Suit.CLUBS));
-        player2.getPlayer_hand().addCardList(new Card(3, Suit.CLUBS));
+        player2.getPlayer_hand().addCardList(new Card(11, Suit.HEARTS));
+        player2.getPlayer_hand().addCardList(new Card(11, Suit.DIAMONDS));
+        player2.getPlayer_hand().addCardList(new Card(5, Suit.CLUBS));
+        player2.getPlayer_hand().addCardList(new Card(5, Suit.CLUBS));
         player2.getPlayer_hand().addCardList(new Card(1, Suit.HEARTS));
 
         Player result = evaluator.same_rank_evaluate(player1, player2, 11);
         assertThat(result, is(player2));
     }
 
-    @Test
-    public void who_win_with_same_rank11(){
-        Evaluator evaluator = new Evaluator();
-        Player player1 = new Player(new Deck(52));
-        player1.getPlayer_hand().addCardList(new Card(7, Suit.CLUBS));
-        player1.getPlayer_hand().addCardList(new Card(7, Suit.CLUBS));
-        player1.getPlayer_hand().addCardList(new Card(3, Suit.HEARTS));
-        player1.getPlayer_hand().addCardList(new Card(3, Suit.HEARTS));
-        player1.getPlayer_hand().addCardList(new Card(1, Suit.DIAMONDS));
-
-        Player player2 = new Player(new Deck(52));
-        player2.getPlayer_hand().addCardList(new Card(7, Suit.SPADES));
-        player2.getPlayer_hand().addCardList(new Card(7, Suit.SPADES));
-        player2.getPlayer_hand().addCardList(new Card(3, Suit.CLUBS));
-        player2.getPlayer_hand().addCardList(new Card(3, Suit.CLUBS));
-        player2.getPlayer_hand().addCardList(new Card(1, Suit.HEARTS));
-
-        Player result = evaluator.same_rank_evaluate(player1, player2, 11);
-        assertThat(result, is(player2));
-    }
+    
 
     @Test
     public void sortTest() {
