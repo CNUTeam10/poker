@@ -149,4 +149,31 @@ public class Evaluator {
 
         return false;
     }
+
+    public Player sameRankEvaluate(Player player1, Player player2, int rank) {
+        if (rank == 1 || rank == 2 || rank == 7 || rank == 8) {
+            return compareSuit(player1, player2);
+        } else {
+
+        }
+        return player1;
+    }
+
+    private Player compareSuit(Player player1, Player player2) {
+        if (suitRank(player1.getPlayer_hand().getCardList().get(0).getSuit()) < suitRank(player2.getPlayer_hand().getCardList().get(0).getSuit()))
+            return player1;
+        else
+            return player2;
+    }
+
+    private int suitRank(Suit suit) {
+        if (suit.equals(Suit.SPADES))
+            return 1;
+        else if (suit.equals(Suit.HEARTS))
+            return 2;
+        else if (suit.equals(Suit.CLUBS))
+            return 3;
+        else
+            return 4;
+    }
 }
