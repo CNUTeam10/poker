@@ -16,9 +16,9 @@ public class Hand {
         this.deck = deck;
         this.pokerType = pokerType;
         cardList = new ArrayList<Card>();
-        for (int i = 0; i < pokerType.getNumberOfCard(); i++) {
-            cardList.add(deck.drawCard());
-        }
+//        for (int i = 0; i < pokerType.getNumberOfCard(); i++) {
+//            cardList.add(deck.drawCard());
+//        }
     }
 
     public int getTotalCard() {
